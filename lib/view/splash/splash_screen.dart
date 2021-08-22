@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_template/localization/language_constants.dart';
+import 'package:flutter_app_template/provider/auth_provider.dart';
 import 'package:flutter_app_template/provider/splash_provider.dart';
 import 'package:flutter_app_template/provider/theme_provider.dart';
 import 'package:flutter_app_template/util/color_resources.dart';
@@ -63,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
         // Provider.of<CartProvider>(context, listen: false).getCartData();
         Timer(Duration(seconds: 1), () {
           if (true) {
-            // Provider.of<AuthProvider>(context, listen: false).updateToken(context);
+             Provider.of<AuthProvider>(context, listen: false).updateToken(context);
             Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => HomeScreen()));
           } else {
             // Navigator.of(context).pushReplacement(MaterialPageRoute(

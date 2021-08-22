@@ -5,8 +5,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/datasource/remote/dio/dio_client.dart';
 import 'data/datasource/remote/dio/logging_interceptor.dart';
+import 'data/repository/auth_repo.dart';
 import 'data/repository/splash_repo.dart';
 import 'helper/network_info.dart';
+import 'provider/auth_provider.dart';
 import 'provider/localization_provider.dart';
 import 'provider/splash_provider.dart';
 import 'provider/theme_provider.dart';
@@ -20,10 +22,12 @@ Future<void> init() async {
 
   //Repository
   sl.registerLazySingleton(() => SplashRepo(sharedPreferences: sl(), dioClient: sl()));
+  sl.registerLazySingleton(() => AuthRepo(dioClient: sl(), sharedPreferences: sl()));
 
 
   // Provider
   sl.registerFactory(() => SplashProvider(splashRepo: sl()));
+  sl.registerFactory(() => AuthProvider(authRepo: sl()));
   sl.registerFactory(() => LocalizationProvider(sharedPreferences: sl()));
   sl.registerFactory(() => ThemeProvider(sharedPreferences: sl()));
 

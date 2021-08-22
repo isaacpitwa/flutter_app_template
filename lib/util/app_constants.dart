@@ -7,6 +7,11 @@ class AppConstants {
 
  // API Endpoints
   static const String CONFIG_URI = 'api/v1/config';
+  static const String REGISTRATION_URI = 'api/v1/auth/register';
+  static const String LOGIN_URI = 'api/v1/auth/login';
+  static const String FORGET_PASSWORD_URI = 'api/v1/auth/forgot-password';
+  static const String TOKEN_URI = 'api/v1/customer/cm-firebase-token';
+
 
   // sharePreference
   static const String TOKEN = 'token';
@@ -21,8 +26,10 @@ class AppConstants {
   static const String GUEST_MODE = 'guest_mode';
   static const String CURRENCY = 'currency';
   static const String LANG_KEY = 'lang';
+  static const String TOPIC = 'app_name';
 
- // Localization
+
+  // Localization
   static const String COUNTRY_CODE = 'country_code';
   static const String LANGUAGE_CODE = 'language_code';
   static List<LanguageModel> languages = [

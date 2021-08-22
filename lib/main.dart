@@ -1,9 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 
 import 'localization/app_localization.dart';
+import 'provider/auth_provider.dart';
 import 'provider/localization_provider.dart';
 import 'provider/splash_provider.dart';
 import 'provider/theme_provider.dart';
@@ -14,10 +16,12 @@ import 'util/app_constants.dart';
 import 'view/splash/splash_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
   await di.init();
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => di.sl<SplashProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<AuthProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ThemeProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<LocalizationProvider>())
     ],
