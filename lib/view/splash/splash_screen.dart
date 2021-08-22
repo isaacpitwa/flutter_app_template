@@ -1,9 +1,17 @@
+import 'dart:async';
+
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_template/localization/language_constants.dart';
 import 'package:flutter_app_template/provider/splash_provider.dart';
 import 'package:flutter_app_template/provider/theme_provider.dart';
 import 'package:flutter_app_template/util/color_resources.dart';
 import 'package:flutter_app_template/util/images.dart';
+import 'package:flutter_app_template/view/basewidget/no_internet_screen.dart';
+import 'package:flutter_app_template/view/home/home_screen.dart';
 import 'package:provider/provider.dart';
+
+import 'widget/splash_painter.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -52,15 +60,15 @@ class _SplashScreenState extends State<SplashScreen> {
     Provider.of<SplashProvider>(context, listen: false).initConfig(context).then((bool isSuccess) {
       if(isSuccess) {
         Provider.of<SplashProvider>(context, listen: false).initSharedPrefData();
-        Provider.of<CartProvider>(context, listen: false).getCartData();
+        // Provider.of<CartProvider>(context, listen: false).getCartData();
         Timer(Duration(seconds: 1), () {
-          if (Provider.of<AuthProvider>(context, listen: false).isLoggedIn()) {
-            Provider.of<AuthProvider>(context, listen: false).updateToken(context);
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => DashBoardScreen()));
+          if (true) {
+            // Provider.of<AuthProvider>(context, listen: false).updateToken(context);
+            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => HomeScreen()));
           } else {
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (BuildContext context) =>
-                    OnBoardingScreen(indicatorColor: ColorResources.GREY, selectedIndicatorColor: Theme.of(context).primaryColor)));
+            // Navigator.of(context).pushReplacement(MaterialPageRoute(
+            //     builder: (BuildContext context) =>
+            //         OnBoardingScreen(indicatorColor: ColorResources.GREY, selectedIndicatorColor: Theme.of(context).primaryColor)));
           }
         });
       }

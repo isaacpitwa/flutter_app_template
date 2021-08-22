@@ -2,7 +2,7 @@
 import 'package:flutter_app_template/data/model/response/language_model.dart';
 
 class AppConstants {
-  static const String BASE_URL = 'https://website.com/';
+  static const String BASE_URL = 'https://greathabib.com/';
   static const String THEME = 'theme';
 
  // API Endpoints
