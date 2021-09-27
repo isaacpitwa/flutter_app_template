@@ -7,6 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'localization/app_localization.dart';
 import 'provider/auth_provider.dart';
 import 'provider/localization_provider.dart';
+import 'provider/onboarding_provider.dart';
 import 'provider/splash_provider.dart';
 import 'provider/theme_provider.dart';
 import 'di_container.dart' as di;
@@ -22,6 +23,7 @@ Future<void> main() async {
     providers: [
       ChangeNotifierProvider(create: (context) => di.sl<SplashProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<AuthProvider>()),
+      ChangeNotifierProvider(create: (context) => di.sl<OnBoardingProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<ThemeProvider>()),
       ChangeNotifierProvider(create: (context) => di.sl<LocalizationProvider>())
     ],
