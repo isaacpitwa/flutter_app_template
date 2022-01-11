@@ -34,13 +34,7 @@ class SplashProvider extends ChangeNotifier {
     ApiResponse apiResponse = await splashRepo.getConfig();
     bool isSuccess;
     if (apiResponse.response != null && apiResponse.response.statusCode == 200) {
-      //
-      // _configModel = ConfigModel.fromJson(apiResponse.response.data);
-      // _baseUrls = ConfigModel.fromJson(apiResponse.response.data).baseUrls;
-      // String _currencyCode = splashRepo.getCurrency();
-      //
-      // getCurrencyData(_currencyCode);
-      // _packageInfo = await PackageInfo.fromPlatform();
+      // Handle Application Configurations
       isSuccess = true;
     } else {
       isSuccess = false;
@@ -49,6 +43,7 @@ class SplashProvider extends ChangeNotifier {
         _hasConnection = false;
       }
     }
+    isSuccess = true; // Remove this line to remove forced successful response
     notifyListeners();
     return isSuccess;
   }
