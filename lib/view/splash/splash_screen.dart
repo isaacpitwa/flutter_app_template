@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_app_template/util/color_resources.dart';
 import 'package:flutter_app_template/util/images.dart';
 import 'package:flutter_app_template/view/basewidget/no_internet_screen.dart';
 import 'package:flutter_app_template/view/home/home_screen.dart';
+import 'package:flutter_app_template/view/onboarding/onboarding_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'widget/splash_painter.dart';
@@ -56,20 +58,18 @@ class _SplashScreenState extends State<SplashScreen> {
 
     _onConnectivityChanged.cancel();
   }
-
   void _route() {
     Provider.of<SplashProvider>(context, listen: false).initConfig(context).then((bool isSuccess) {
       if(isSuccess) {
         Provider.of<SplashProvider>(context, listen: false).initSharedPrefData();
-        // Provider.of<CartProvider>(context, listen: false).getCartData();
         Timer(Duration(seconds: 1), () {
-          if (true) {
+          if (Provider.of<AuthProvider>(context,listen: false).isLoggedIn()) {
              Provider.of<AuthProvider>(context, listen: false).updateToken(context);
             Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => HomeScreen()));
           } else {
-            // Navigator.of(context).pushReplacement(MaterialPageRoute(
-            //     builder: (BuildContext context) =>
-            //         OnBoardingScreen(indicatorColor: ColorResources.GREY, selectedIndicatorColor: Theme.of(context).primaryColor)));
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (BuildContext context) =>
+                    OnBoardingScreen(indicatorColor: ColorResources.GREY, selectedIndicatorColor: Theme.of(context).primaryColor)));
           }
         });
       }
@@ -86,15 +86,12 @@ class _SplashScreenState extends State<SplashScreen> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           color: Provider.of<ThemeProvider>(context).darkTheme ? Colors.black : ColorResources.getPrimary(context),
-          child: CustomPaint(
-            painter: SplashPainter(),
-          ),
         ),
         Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(Images.splash_logo, height: 250.0, fit: BoxFit.scaleDown, width: 250.0),
+              Image.asset(Images.splash_logo, height: 180.0, fit: BoxFit.scaleDown, width: 180.0),
             ],
           ),
         ),
